@@ -96,7 +96,4 @@ public class Feld {
 	void setFigur(Figuren figur) {
 		this.figur = figur;
 	}
-
-	//Konstruktor
-    
 }

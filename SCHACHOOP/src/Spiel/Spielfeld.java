@@ -2,34 +2,16 @@ package Spiel;
 
 import java.awt.Color;
 
-
-/**
- * Das Spielfeld, auf dem das Spiel sp‰ter statt findet.
- * 
- * 
- * @author Simon Soltow
- */
 public class Spielfeld {
     //Variablen
-	
-    /**
-     * Eine Liste der einzelnen Felder
-     */
     private Feld[] felder = new Feld[65];
-    /**
-     * Eine Liste, welche die weiﬂen Figuren enth‰lt
-     */
     private Figuren[] figurenWeiﬂ = new Figuren[16];
-    /**
-     * Eine Liste, welche die schwarzen Figuren enth‰lt.
-     */
     private Figuren[] figurenSchwarz = new Figuren[16];
+    
+
 
 
     //Konstruktor
-    /**
-     * 
-     */
     public Spielfeld() {
     	
     	//Initialisierung Felder
@@ -53,14 +35,14 @@ public class Spielfeld {
         
         //Initialisierung Figuren Weiﬂ
         
-        figurenWeiﬂ[0] = new Turm(this.getFeld(1, 1), "WeiﬂTurm1");
-        figurenWeiﬂ[1] = new Springer(this.getFeld(2, 1), "WeiﬂSpringer1");
-        figurenWeiﬂ[2] = new L‰ufer(this.getFeld(3, 1), "WeiﬂL‰ufer1");
-        figurenWeiﬂ[3] = new Kˆnigin(this.getFeld(4, 1), "WeiﬂKˆnigin");
-        figurenWeiﬂ[4] = new Kˆnig(this.getFeld(5, 1), "WeiﬂKˆnig");
-        figurenWeiﬂ[5] = new L‰ufer(this.getFeld(6, 1), "WeiﬂL‰ufer2");
-        figurenWeiﬂ[6] = new Springer(this.getFeld(7, 1), "WeiﬂSpringer2");
-        figurenWeiﬂ[7] = new Turm(this.getFeld(8, 1), "WeiﬂTurm2");
+        figurenWeiﬂ[0] = new Turm(this.getFeld(1, 1), "WeiﬂTurm1", this);
+        figurenWeiﬂ[1] = new Springer(this.getFeld(2, 1), "WeiﬂSpringer1", this);
+        figurenWeiﬂ[2] = new L‰ufer(this.getFeld(3, 1), "WeiﬂL‰ufer1", this);
+        figurenWeiﬂ[3] = new Kˆnigin(this.getFeld(4, 1), "WeiﬂKˆnigin", this);
+        figurenWeiﬂ[4] = new Kˆnig(this.getFeld(5, 1), "WeiﬂKˆnig", this);
+        figurenWeiﬂ[5] = new L‰ufer(this.getFeld(6, 1), "WeiﬂL‰ufer2", this);
+        figurenWeiﬂ[6] = new Springer(this.getFeld(7, 1), "WeiﬂSpringer2", this);
+        figurenWeiﬂ[7] = new Turm(this.getFeld(8, 1), "WeiﬂTurm2", this);
         
         for(int i = 0; i < 8; i++) {
         	figurenWeiﬂ[i].getFeld().setFigur(figurenWeiﬂ[i]);
@@ -68,67 +50,45 @@ public class Spielfeld {
         
         
         for(int i = 8; i < 16; i++) {
-        	figurenWeiﬂ[i] = new Bauer(this.getFeld(i - 7, 2), "WeiﬂBauer"+(i-7));
+        	figurenWeiﬂ[i] = new Bauer(this.getFeld(i - 7, 2), "WeiﬂBauer"+(i-7), this);
         	figurenWeiﬂ[i].getFeld().setFigur(figurenWeiﬂ[i]);
         }
         
         //Initialisierung Figuren Schwarz
         
-        figurenSchwarz[0] = new Turm(this.getFeld(8, 8), "SchwarzTurm1");
-        figurenSchwarz[1] = new Springer(this.getFeld(7, 8), "SchwarzSpringer1");
-        figurenSchwarz[2] = new L‰ufer(this.getFeld(6, 8), "SchwarzL‰ufer1");
-        figurenSchwarz[3] = new Kˆnigin(this.getFeld(5, 8), "SchwarzKˆnigin");
-        figurenSchwarz[4] = new Kˆnig(this.getFeld(4, 8), "SchwarzKˆnig");
-        figurenSchwarz[5] = new L‰ufer(this.getFeld(3, 8), "SchwarzL‰ufer2");
-        figurenSchwarz[6] = new Springer(this.getFeld(2, 8), "SchwarzSpringer2");
-        figurenSchwarz[7] = new Turm(this.getFeld(1, 8), "SchwarzTurm2");
+        figurenSchwarz[0] = new Turm(this.getFeld(8, 8), "SchwarzTurm1", this);
+        figurenSchwarz[1] = new Springer(this.getFeld(7, 8), "SchwarzSpringer1", this);
+        figurenSchwarz[2] = new L‰ufer(this.getFeld(6, 8), "SchwarzL‰ufer1", this);
+        figurenSchwarz[3] = new Kˆnigin(this.getFeld(5, 8), "SchwarzKˆnigin", this);
+        figurenSchwarz[4] = new Kˆnig(this.getFeld(4, 8), "SchwarzKˆnig", this);
+        figurenSchwarz[5] = new L‰ufer(this.getFeld(3, 8), "SchwarzL‰ufer2", this);
+        figurenSchwarz[6] = new Springer(this.getFeld(2, 8), "SchwarzSpringer2", this);
+        figurenSchwarz[7] = new Turm(this.getFeld(1, 8), "SchwarzTurm2", this);
         
         for(int i = 0; i < 8; i++) {
-        	figurenSchwarz[i].getFeld().setFigur(figurenWeiﬂ[i]);
+        	figurenSchwarz[i].getFeld().setFigur(figurenSchwarz[i]);
         }
         
         for(int i = 15; i > 7; i--) {
-        	figurenSchwarz[23-i] = new Bauer(this.getFeld(i-7, 7), "SchwarzBauer"+(16-i));
+        	figurenSchwarz[23-i] = new Bauer(this.getFeld(i-7, 7), "SchwarzBauer"+(16-i), this);
         	figurenSchwarz[23-i].getFeld().setFigur(figurenSchwarz[i-7]);
         }
     }
     
     //Methoden
     
-    /**
-	 * @return the felder
-	 */
-	Feld[] getFelder() {
+	public Feld[] getFelder() {
 		return felder;
 	}
 
-	/**
-	 * @return the figurenWeiﬂ
-	 */
-	Figuren[] getFigurenWeiﬂ() {
+	public Figuren[] getFigurenWeiﬂ() {
 		return figurenWeiﬂ;
 	}
 
-	/**
-	 * @return the figurenSchwarz
-	 */
-	Figuren[] getFigurenSchwarz() {
+	public Figuren[] getFigurenSchwarz() {
 		return figurenSchwarz;
 	}
 
-	/**
-     * Gibt ein Feld aus der Liste felder zur¸ck.
-     * 
-     * @param x
-     * Der X-Wert
-     * 
-     * @param y
-     * Der Y-Wert
-     * 
-     * @return
-     * Ein Feld, wenn Input korrekt ist.
-     * Null, wenn ung¸ltige Parameter eingegeben werden.
-     */
     public Feld getFeld(int x, int y) {
     	for(int i = 0; i < felder.length; i++) {
     		if(felder[i].getX() == x && felder[i].getY() == y) {
@@ -139,12 +99,6 @@ public class Spielfeld {
     	return null;
     }
     
-    /**
-     * Gibt alle Figuren einer Farbe mit zugehˆriger Position aus.
-     * 
-     * @param white
-     * True wenn die weiﬂen Figuren ausgegeben werden sollen, False wenn die schwarzen Ausgegeben werden sollen.
-     */
     public void printFeldFiguren(boolean white) {
     	if(white) {
     		for(int i = 0; i < this.figurenWeiﬂ.length; i++) {
@@ -157,5 +111,7 @@ public class Spielfeld {
     		}
     	}
     }
+    
+    
     
 }

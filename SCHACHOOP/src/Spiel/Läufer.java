@@ -12,9 +12,13 @@ public class Läufer extends Figuren {
 	/**
 	 * @param feld
 	 */
-	public Läufer(Feld feld, String figureID) {
-		super(feld, figureID);
-		// TODO Auto-generated constructor stub
+	public Läufer(Feld feld, String figureID, Spielfeld spielfeld) {
+		super(feld, figureID, spielfeld);
+	}
+
+	@Override
+	public void setFelderZumBewegen() {
+		
 	}
 
 }
