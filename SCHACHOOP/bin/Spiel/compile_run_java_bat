@@ -1,0 +1,47 @@
+@echo off
+
+REM === Inputs ===
+set PROJ_ROOT=H:\s_soltow18\eclipse\SCHACHOOP
+set APP_STARTER=testclass.java
+REM set APP_STARTER_PACKAGE=package.of.class-with-main-method
+REM ===
+
+REM === Set local env ===
+call setenv.bat
+set SRC_DIR=%PROJ_ROOT%\src
+set BIN_DIR=%PROJ_ROOT%\bin
+set APP_STARTER_DIR=%APP_STARTER_PACKAGE:.=\%
+REM ===
+
+REM === Clean and make bin dir ===
+rd /s /q "%BIN_DIR%"
+md "%BIN_DIR%"
+REM ===
+
+REM === Compile ===
+"%JAVA_HOME%\bin\java" -version
+
+"%JAVA_HOME%\bin\javac" ^
+	-d "%BIN_DIR%" ^
+	-sourcepath %SRC_DIR% ^
+	"%SRC_DIR%\%APP_STARTER%.java"
+
+if errorlevel 1 (
+	echo compile:error
+	exit /B 1
+)
+
+echo compile:success
+REM ===
+
+REM === Run ===
+REM "%JAVA_HOME%\bin\java" -cp "%BIN_DIR%" %APP_STARTER_PACKAGE%.%APP_STARTER%
+"%JAVA_HOME%\bin\java" -cp "%BIN_DIR%" %APP_STARTER%
+
+if errorlevel 1 (
+	echo runtime:error
+	exit /B 1
+)
+
+echo runtime:success
+REM ===
